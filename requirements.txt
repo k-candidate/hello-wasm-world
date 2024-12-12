@@ -1,0 +1,10 @@
+certifi==2024.8.30
+charset-normalizer==3.4.0
+idna==3.10
+ordered-set==4.1.0
+patchelf==0.17.2.1
+py2wasm==2.6.3
+requests==2.32.3
+tqdm==4.67.1
+urllib3==2.2.3
+zstandard==0.23.0
