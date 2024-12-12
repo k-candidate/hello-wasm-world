@@ -9,6 +9,9 @@ To run the wasm:
 ```
 wasmer run hello-wasm-world.wasm
 ```
+## Docker
+How does Docker work with WASM?  
+cli <-> dockerd <-> containerd <-> shim <-> wasm rt (replacing runc) <-> registry
 
 To create the wasm docker image:
 ```
@@ -17,7 +20,7 @@ docker build -t kcandidate/hello-wasm-world:v1 --platform wasi/wasm32 .
 
 To use a wasm runtime for docker, use these instructions: 
 https://docs.docker.com/engine/daemon/alternative-runtimes/.
-But they are incomplete.  
+But those instructions are incomplete.  
 The daemon configuration file is `/etc/docker/daemon.json`:
 ```
 {
@@ -26,7 +29,7 @@ The daemon configuration file is `/etc/docker/daemon.json`:
   }
 }
 ```
-To build the wasmtime binary, you'll need `protobuf-compiler` and `libseccomp-dev` which are not present in the image used for the build stage. Alternatively you can just get it from https://github.com/containerd/runwasi/releases
+To build the wasmtime binary, you'll need `protobuf-compiler` and `libseccomp-dev` which are not present in the build stage image used in the Docker docs. Alternatively, you can just get the precompiled binary from https://github.com/containerd/runwasi/releases
 ```
 docker build --output . - <<EOF
 FROM rust:latest as build
