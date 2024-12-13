@@ -9,7 +9,10 @@ To run the wasm:
 ```
 wasmer run hello-wasm-world.wasm
 ```
+Instructions for installing wasmer: https://docs.wasmer.io/install
+
 ## Docker
+
 How does Docker work with WASM?  
 cli <-> dockerd <-> containerd <-> shim <-> wasm rt (replacing runc) <-> registry
 
@@ -20,7 +23,7 @@ docker build -t kcandidate/hello-wasm-world:v1 --platform wasi/wasm32 .
 
 To use a wasm runtime for docker, use these instructions: 
 https://docs.docker.com/engine/daemon/alternative-runtimes/.
-But those instructions are incomplete.  
+But those instructions are incomplete (as of 2024/12/13).  
 The daemon configuration file is `/etc/docker/daemon.json`:
 ```
 {
@@ -49,6 +52,7 @@ docker run --runtime=io.containerd.wasmtime.v1 --platform=wasi/wasm kcandidate/h
 ```
 
 ## Results
+
 Running `python hello-wasm-world.py`:
 ```
 Elapsed time for range sum: 0.001385 seconds
