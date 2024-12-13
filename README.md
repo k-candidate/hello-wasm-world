@@ -13,7 +13,10 @@ Instructions for installing wasmer: https://docs.wasmer.io/install
 
 ## Docker
 
-How does Docker work with WASM?  
+**Why?**  
+Docker and WASM are different layers of abstraction. If Docker is a "container for the OS", then WASM would be a "container for the application". That leads to the conclusion that you can prescind from Docker altogether, theoretically. However, in the real world, there are more factors at play: orchestration and scaling (there's still no k8s equivalent for wasm, afaik), developer experience, maturity (the wasm ecosystem is relatively young), cost of change, and "politics". So, I think as of now, if some organization, that is already running microservices, were to use WASM, it would do it with Docker.
+
+**How does Docker work with WASM?**  
 cli <-> dockerd <-> containerd <-> shim <-> wasm rt (replacing runc) <-> registry
 
 To create the wasm docker image:
@@ -21,7 +24,7 @@ To create the wasm docker image:
 docker build -t kcandidate/hello-wasm-world:v1 --platform wasi/wasm32 .
 ```
 
-To use a wasm runtime for docker, use these instructions: 
+To use a wasm runtime for docker, follow these instructions: 
 https://docs.docker.com/engine/daemon/alternative-runtimes/.
 But those instructions are incomplete (as of 2024/12/13).  
 The daemon configuration file is `/etc/docker/daemon.json`:
